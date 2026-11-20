@@ -94,20 +94,4 @@ def patch_student(student_id: int, student: StudentPatch):
     conn.close()
     if updated == 0:
         raise HTTPException(status_code=404, detail="Student not found")
-    return {"message": "Student updated"}@app.___("/students/{student_id}")
-def patch_student(student_id: int, student: StudentPatch):
-    conn = get_connection()
-    cur = conn.cursor()
-    cur.execute(
-        "UPDATE studentInfo SET "
-        "name = COALESCE(%s, name), "
-        "age = COALESCE(%s, age) "
-        "WHERE id = %s",
-        (student.name, student.age, student_id),
-    )
-    conn.commit()
-    updated = cur.rowcount
-    conn.close()
-    if updated == 0:
-        raise HTTPException(status_code=404, detail="Student not found")
     return {"message": "Student updated"}
