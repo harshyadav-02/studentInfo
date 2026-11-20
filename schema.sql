@@ -1,0 +1,7 @@
+CREATE TABLE studentInfo (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    age INT NOT NULL
+);
+
+ALTER TABLE studentInfo ADD CONSTRAINT age_check CHECK (age BETWEEN 3 AND 25);
